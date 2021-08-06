@@ -3,7 +3,12 @@ require('dotenv') .config()
 const express = require('express')
 const app = express()
 
+// Middlewares
+const checkToken = require('./middlewares/checkToken')
+
+// Routes
 const authRoutes = require('./routes/auth')
+const protectedDashboardRoutes = require('./routes/protectedDashboard')
 
 const mongoose = require('mongoose')
 
@@ -23,7 +28,11 @@ mongoose
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
-// Auth routes
+
+// Middlewares
+app.use('/api/dashboard', checkToken, protectedDashboardRoutes)
+
+// Routes// Auth routes
 app.use('/api/user', authRoutes)
 
 // Default routes
