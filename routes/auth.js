@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const User = require('../models/user')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 // Joi validation module
 const Joi = require('joi')
@@ -93,9 +94,20 @@ router.post('/login', async (req, res) => {
     })
   }
 
-  return res.status(200).json({
+  // Create token
+  const token = jwt.sign({
+    id: user._id,
+    name: user.name
+  }, process.env.JWT_TOKEN_SECRET)
+  // eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxMGQ1YjM0NmJmZTI3YWM0ZmU0NzI3YiIsIm5hbWUiOiJwcnVlYmE2IiwiaWF0IjoxNjI4MjY5NDA4fQ.kHnOGQ7PV40LObNccXszb2W_XyHjAao8PdM_7DDind8
+  
+  return res
+    .status(200)
+    .header('auth-token', token)
+    .json({
     error: null,
-    message: `Welcome, ${user.name}`
+    message: `Welcome, ${user.name}`,
+    data: { token }
   })
 })
 
