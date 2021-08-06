@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const User = require('../models/user')
+const bcrypt = require('bcrypt')
 
 // Joi validation module
 const Joi = require('joi')
-const { error } = require('console')
 
 // Joi checker
 const schemaRegister = Joi.object({
@@ -34,10 +34,14 @@ router.post('/register', async (req, res) => {
     })
   }
 
+  // Save user
+  const saltSteps = parseInt(process.env.SALTSTEPS, 10)
+  const salt = await bcrypt.genSalt(saltSteps || 10)
+  const password = await bcrypt.hash(req.body.password, salt)
   const user = new User({
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password
+    password: password
   })
   try {
     const savedUser = await user.save()
