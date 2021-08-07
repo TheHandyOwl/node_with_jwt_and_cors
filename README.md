@@ -19,11 +19,11 @@ Install:
 -
 * git clone https://github.com/TheHandyOwl/node_with_jwt_and_cors.git
 * cd node_with_jwt_and_cors
-* Create your own '.env' file with your custom values
+* Create your own '.env' file with your custom values (variables)
 * Don't forget to check / change your DB uri connection
 * npm install
 * npm run dev (to run with nodemon) or ...
-* npm start (tto run with node aas default)
+* npm start (to run with node as default)
 
 Example link:
 -
@@ -32,3 +32,9 @@ https://andygeek.com/posts/Mis%20apuntes%20JavaScript/posts/Api-rest-de-login-co
 Original github repository:
 -
 https://github.com/andygeek/backend-auth/
+
+Heroku DEMO
+-
+Wait a few seconds if the server is down until it reboots:
+https://nodewithjwtandcors.herokuapp.com/
+
