@@ -33,4 +33,8 @@ Original github repository:
 -
 https://github.com/andygeek/backend-auth/
 
-Heroku DEMO (wait a few seconds if the server is down until it reboots)
+Heroku DEMO
+-
+Wait a few seconds if the server is down until it reboots:
+https://nodewithjwtandcors.herokuapp.com/
+
