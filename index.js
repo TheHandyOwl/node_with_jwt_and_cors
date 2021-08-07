@@ -1,7 +1,16 @@
 require('dotenv') .config()
 
+const cors = require('cors')
+
 const express = require('express')
 const app = express()
+
+// CORS
+const corsOptions = {
+  origin: '*',
+  optionSuccessStatus: 200
+}
+app.use(cors(corsOptions))
 
 // Middlewares
 const checkToken = require('./middlewares/checkToken')
@@ -10,6 +19,7 @@ const checkToken = require('./middlewares/checkToken')
 const authRoutes = require('./routes/auth')
 const protectedDashboardRoutes = require('./routes/protectedDashboard')
 
+// Mongoose
 const mongoose = require('mongoose')
 
 const uri = `mongodb+srv://${process.env.DB_ATLAS_USER}:${process.env.DB_ATLAS_PASSWORD}@midudevfsb.fhvt9.mongodb.net/${process.env.DB_ATLAS_DBNAME}?retryWrites=true&w=majority`
