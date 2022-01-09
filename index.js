@@ -31,7 +31,6 @@ mongoose
   })
   .catch((err) => {
     console.log(`AtlasDB error`, err)
-    client.close()
   })
 
 // To read json objects
